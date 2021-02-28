@@ -6,9 +6,6 @@
 
 #include "semaphore/semaphore.hpp"
 
-// note: replace this if it's not GCC
-#define xputchar putchar_unlocked
-
 #define ENABLE_SEMAPHORE 1
 
 int main() {

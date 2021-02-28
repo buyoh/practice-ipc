@@ -4,6 +4,7 @@
 #include <unistd.h>
 
 #include "shm/shm.hpp"
+
 int main() {
   const int N = 8;
   auto shared = SharedMemory::create(-1, sizeof(int) * N);
@@ -14,8 +15,7 @@ int main() {
     for (int i = 0; i < N; ++i) {
       ptr[i] = (i + 1) * (i + 1);
     }
-    sleep(1);
-    sleep(1);
+    sleep(2);
     shared.destroy();
     return 0;
   } else {
@@ -26,7 +26,6 @@ int main() {
       std::cout << ptr[i] << ' ';
     }
     std::cout << std::endl;
-    sleep(1);
     return 0;
   }
 }
