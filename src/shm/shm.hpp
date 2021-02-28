@@ -1,14 +1,11 @@
 #include <string>
-#include <optional>
 #include <sys/ipc.h>
 #include <sys/shm.h>
 
 class SharedMemory {
  public:
-  static std::optional<SharedMemory> create(const std::string& filepath, size_t size);
-  static std::optional<SharedMemory> create(key_t key, size_t size);
-  static std::optional<SharedMemory> open(const std::string& filepath, size_t size);
-  static std::optional<SharedMemory> open(key_t key, size_t size);
+  static SharedMemory create(key_t key, size_t size);
+  static SharedMemory open(key_t key, size_t size);
 
   ~SharedMemory();
   SharedMemory& operator=(SharedMemory&& sm) {
@@ -30,5 +27,4 @@ class SharedMemory {
  private:
   int shmid_;
   void* ptr_;
-  friend std::optional<SharedMemory>;
 };

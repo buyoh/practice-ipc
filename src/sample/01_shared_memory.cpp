@@ -4,19 +4,9 @@
 #include <unistd.h>
 
 #include "shm/shm.hpp"
-
-template <typename T>
-T&& unwrap(std::optional<T>&& o) {
-  if (!o) {
-    fprintf(stderr, "unwrap failed: %s\n", typeid(T).name());
-    exit(1);
-  }
-  return std::move(*o);
-}
-
 int main() {
   const int N = 8;
-  auto shared = unwrap(SharedMemory::create(-1, sizeof(int) * N));
+  auto shared = SharedMemory::create(-1, sizeof(int) * N);
 
   if (fork()) {
     // parent-process
